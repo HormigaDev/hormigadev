@@ -2,7 +2,7 @@
 
 Portfolio de HormigaDev, desarrollador backend especializado en Rust, TypeScript, Python y herramientas CLI. Descubre mis proyectos y habilidades.
 
-**URL:** https://hormigadev.github.io/hormigadev/
+**URL:** https://portfolio.hormiga.dev/
 
 ## Sobre mí
 
