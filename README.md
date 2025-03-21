@@ -4,9 +4,41 @@ Portfolio de HormigaDev, desarrollador backend especializado en Rust, TypeScript
 
 **URL:** https://portfolio.hormiga.dev/
 
-## Sobre mí
+## Habilidades
 
-Mi nombre es **Isaí Medina**, soy desarrollador de software **especializado en backend y APIs RESTful**. Domino frameworks modernos como **NestJS** para crear soluciones escalables, seguras y optimizadas, con código limpio y modular. Mi experiencia con **metodologías ágiles** me permite cumplir plazos ajustados y enfrentar cualquier desafío. Además, cuento con conocimientos sólidos en **frontend**, lo que me permite colaborar en proyectos **full-stack** y ofrecer **soluciones integrales**.
+### Habilidades Técnicas
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-FF6F20?style=flat-square&logo=rust&logoColor=white)
+![CLI Tools](https://img.shields.io/badge/CLI%20Tools-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
+![APIs RESTful](https://img.shields.io/badge/APIs%20RESTful-FF6F00?style=flat-square&logo=fastapi&logoColor=white)
+![Discord.js](https://img.shields.io/badge/Discord.js-5865F2?style=flat-square&logo=discord&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+
+### Habilidades Blandas
+
+![Resolución de problemas](https://img.shields.io/badge/-Resolución%20de%20problemas-blue?style=flat-square)
+![Trabajo en equipo](https://img.shields.io/badge/-Trabajo%20en%20equipo-green?style=flat-square)
+![Buena comunicación](https://img.shields.io/badge/-Buena%20comunicación-yellow?style=flat-square)
+![Responsabilidad](https://img.shields.io/badge/-Responsabilidad-orange?style=flat-square)
+![Adaptabilidad](https://img.shields.io/badge/-Adaptabilidad-red?style=flat-square)
+![Empatía](https://img.shields.io/badge/-Empatía-purple?style=flat-square)
+![Análisis crítico](https://img.shields.io/badge/-Análisis%20crítico-cyan?style=flat-square)
+![Resiliencia](https://img.shields.io/badge/-Resiliencia-pink?style=flat-square)
+![Liderazgo](https://img.shields.io/badge/-Liderazgo-lightgrey?style=flat-square)
+![Aprendizaje rápido](https://img.shields.io/badge/-Aprendizaje%20rápido-brightgreen?style=flat-square)
+![Trabajo bajo presión](https://img.shields.io/badge/-Trabajo%20bajo%20presión-blueviolet?style=flat-square)
+![Investigación](https://img.shields.io/badge/-Investigación-brown?style=flat-square)
+![Estudio continuo](https://img.shields.io/badge/-Estudio%20continuo-darkblue?style=flat-square)
 
 ## Proyectos
 
@@ -14,91 +46,37 @@ Mi nombre es **Isaí Medina**, soy desarrollador de software **especializado en 
 
 Un blog con ejemplos prácticos sobre cómo implementar comandos en bots de Discord, usando librerías como **Discord.js**.
 
--   Backend: [https://github.com/HormigaDev/backend-blog-botcommands](https://github.com/HormigaDev/backend-blog-botcommands)
--   Frontend: [https://github.com/HormigaDev/frontend-blog-botcommands](https://github.com/HormigaDev/frontend-blog-botcommands)
+-   [Backend](https://github.com/HormigaDev/backend-blog-botcommands)
+-   [Frontend](https://github.com/HormigaDev/frontend-blog-botcommands)
 
 ### Tasks App
 
 Aplicación de escritorio desarrollada para gestionar tareas, separadas por categorías y prioridades.
 
--   Backend: [https://github.com/HormigaDev/tasksapp-local-backend](https://github.com/HormigaDev/tasksapp-local-backend)
--   Frontend: [https://github.com/HormigaDev/tasks-web](https://github.com/HormigaDev/tasks-web)
--   Proyecto final: [https://github.com/HormigaDev/tasks](https://github.com/HormigaDev/tasks)
+-   [Backend](https://github.com/HormigaDev/tasksapp-local-backend)
+-   [Frontend](https://github.com/HormigaDev/tasks-web)
+-   [Proyecto final](https://github.com/HormigaDev/tasks)
 
 ### CLI administrador de bases de datos
 
 Una interfaz de línea de comandos (CLI) para gestionar bases de datos, permitiendo el control de versiones mediante migraciones. También facilita la generación y restauración de copias de seguridad de forma optimizada y sencilla.
 
--   Repositorio: [https://github.com/HormigaDev/r-backups](https://github.com/HormigaDev/r-backups)
+-   [Repositorio](https://github.com/HormigaDev/r-backups)
 
 ### Templates de proyectos
 
 Conjunto de templates listos para iniciar proyectos en diferentes tecnologías como **NestJS, Rust y Discord.js**.
 
--   Plantilla de API RESTful: [https://github.com/HormigaDev/nest-api-template](https://github.com/HormigaDev/nest-api-template)
--   Plantilla de CLI: [https://github.com/HormigaDev/cli-template](https://github.com/HormigaDev/cli-template)
--   Plantilla de bot de Discord: [https://github.com/HormigaDev/bot-template](https://github.com/HormigaDev/bot-template)
+-   [Plantilla de CLI](https://github.com/HormigaDev/cli-template)
+-   [Plantilla de bot de Discord](https://github.com/HormigaDev/bot-template)
 
-## Habilidades
+## Sobre mí
 
-### Hard skills
+Mi nombre es **Isaí Medina**, soy desarrollador de software **especializado en backend y APIs RESTful**. Domino frameworks modernos como **NestJS** para crear soluciones escalables, seguras y optimizadas, con código limpio y modular. Mi experiencia con **metodologías ágiles** me permite cumplir plazos ajustados y enfrentar cualquier desafío. Además, cuento con conocimientos sólidos en **frontend**, lo que me permite colaborar en proyectos **full-stack** y ofrecer **soluciones integrales**.
 
--   TypeScript / JavaScript (Node.js)
--   NestJS
--   Next.js
--   Git & GitHub
--   Docker
--   Rust
--   CLI Tools
--   APIs RESTful
--   Discord.js
--   PostgreSQL
--   Linux
-
-### Soft skills
-
--   Resolución de problemas
--   Trabajo en equipo
--   Buena comunicación
--   Responsabilidad
--   Adaptabilidad
--   Empatía
--   Análisis crítico
--   Resiliencia
--   Lideranza
--   Aprendizaje rápido
--   Trabajo bajo presión
--   Investigación
--   Estudio continuo
-
-## Trayectoria
-
-### 2021
-
--   **Primer contacto con la programación:** A inicios de 2021, un colega mencionó que había creado su propio bot para Discord. Intrigado, le pregunté cómo lo había hecho y me compartió un enlace a un canal con un tutorial detallado. Siguiendo los pasos del video, me sumergí en la programación por primera vez, descubriendo una pasión que no había considerado antes.
--   **Primeros pasos:** A finales de 2021, comencé a aprovechar algunos cursos gratuitos. Estuve tomando un curso temporal de **lógica de programación** en ED.team y explorando otros cursos públicos de **HTML, CSS3 y JavaScript** en el canal de SoyDalto. Durante ese tiempo, adquirí una base sólida de conocimientos, aunque, lamentablemente, no conocía **Git** ni **GitHub**, lo que hizo que esos primeros proyectos no quedaran registrados.
-
-### 2022
-
--   **Cursos y primeros proyectos:** A inicios de 2022, comencé a tomar **cursos certificados** que realmente agregaron valor a mi formación. Completé con éxito el curso de Node.js en Mastermind, y los cursos de Git & GitHub, JavaScript y HTML & CSS en Alura. Durante estos cursos, realicé algunos proyectos, como:
-    -   Simulador de encriptador de texto: [https://hormigadev.github.io/challengeone2/](https://hormigadev.github.io/challengeone2/)
-    -   Juego del ahorcado: [https://hormigadev.github.io/jogodaforcaone2/](https://hormigadev.github.io/jogodaforcaone2/)
-
-### 2023
-
--   **Inicio universitario:** En febrero de 2023, inicié mis estudios en la universidad Horus en Santa Catarina, Brasil, donde actualmente curso el 5º semestre de la carrera de **Sistemas de Información**. Durante este tiempo, he adquirido sólidos conocimientos en programación y buenas prácticas, así como en diversas tecnologías clave para el desarrollo de sistemas completos. Entre las tecnologías que he aprendido se encuentran **PostgreSQL, Delphi, C, Análisis Orientado a Objetos y JavaScript**, entre otras.
-
-### 2024
-
--   **Oficialmente: programador:** En agosto de 2024, inicié mi carrera como Programador en la empresa ZettaBrasil Sistemas de Gestão, en Santa Catarina, Brasil. Durante este tiempo, he adquirido valiosos conocimientos en **Docker, PHP y buenas prácticas en la descripción de tareas**. Además, he profundizado en la **metodología SCRUM** y he mejorado significativamente mis habilidades de comunicación en entornos profesionales.
--   **Dominando Linux:** Durante las vacaciones de diciembre de 2024 obtuve mi certificación más reciente. Completé con éxito el curso de **Introducción a Linux** en Hack4u, profundizando en el funcionamiento de los sistemas operativos basados en este kernel. Gracias a esto, he desarrollado la capacidad de personalizar y optimizar entornos **Linux** con un alto nivel de detalle. Además, complementé este aprendizaje con el curso de **Personalización de Linux**, también en Hack4u, impartido por el profesor Marcelo Vázquez (**S4vitar**). Estos conocimientos me han permitido mejorar mi eficiencia en entornos **Linux**, comprendiendo desde la configuración del sistema hasta la automatización de tareas para optimizar el flujo de trabajo.
-
-### 2025
-
--   **Y seguiré aprendiendo...:** Actualmente, me encuentro completamente enfocado en el estudio continuo, con una fuerte pasión por aprender y crecer cada día. Mi compromiso con el aprendizaje es inquebrantable y estoy siempre listo para enfrentar nuevos desafíos. Mi sed de conocimiento sigue creciendo, y me siento preparado para aplicar mis habilidades y adquirir nuevas, siempre con una actitud proactiva. Estoy abierto a nuevas oportunidades y listo para contribuir y seguir evolucionando en el mundo de la programación y la tecnología.
 
 ## Contacto
 
 ¿Cómo contactarme?
 
-Puedes enviar un mensaje directamente a mi e-mail hormigadev7@gmail.com
+![Email](https://img.shields.io/badge/Email-hormigadev7@gmail.com-teal?style=flat-square)
