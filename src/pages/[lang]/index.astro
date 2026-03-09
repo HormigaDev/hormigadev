@@ -1,0 +1,349 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/utils";
+import HeroTerminal from "../../components/HeroTerminal.vue";
+import LanguagePicker from "../../components/LanguagePicker.vue";
+import TechBadge from "../../components/ui/TechBadge.vue";
+import "../../styles/global.css";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+    { params: { lang: "pt" } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+interface Project {
+  title: string;
+  description: string;
+  tags: { name: string; color: string }[];
+  accent: string;
+  repo: string;
+}
+
+const projects: Project[] = [
+  {
+    title: t("project.miga.title"),
+    description: t("project.miga.description"),
+    tags: [
+      { name: "Rust", color: "#DEA584" },
+      { name: "Systems", color: "#99AAB5" },
+    ],
+    accent: "#DEA584",
+    repo: "https://github.com/HormigaDev/miga-cli",
+  },
+  {
+    title: t("project.patto.title"),
+    description: t("project.patto.description"),
+    tags: [
+      { name: "TypeScript", color: "#3178C6" },
+      { name: "Architecture", color: "#99AAB5" },
+    ],
+    accent: "#3178C6",
+    repo: "https://github.com/HormigaDev/patto-bot-template",
+  },
+  {
+    title: t("project.vinrouge.title"),
+    description: t("project.vinrouge.description"),
+    tags: [
+      { name: "Vue", color: "#42b883" },
+      { name: "UX", color: "#99AAB5" },
+    ],
+    accent: "#42b883",
+    repo: "https://github.com/HormigaDev/vin-rouge-bistro",
+  },
+];
+
+const skills: { name: string; color: string }[] = [
+  { name: "Rust", color: "#DEA584" },
+  { name: "TypeScript", color: "#3178C6" },
+  { name: "Vue 3", color: "#42b883" },
+  { name: "Astro", color: "#FF5D01" },
+  { name: "Linux", color: "#FCC624" },
+  { name: "Nginx", color: "#009639" },
+  { name: "Docker", color: "#2496ED" },
+  { name: "PostgreSQL", color: "#4169E1" },
+  { name: "Git", color: "#F05032" },
+  { name: "REST/GraphQL", color: "#E10098" },
+];
+
+const terminalEasterEggs = [
+  t("terminal.egg.0"),
+  t("terminal.egg.1"),
+  t("terminal.egg.2"),
+  t("terminal.egg.3"),
+];
+---
+
+<Layout title={`HormigaDev — ${t("hero.role")}`} lang={lang}>
+  <header class="sticky top-0 z-50 border-b border-tech-secondary/10 bg-tech-dark/90 backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={`/${lang}/`} class="flex items-center gap-3 group">
+        <img 
+          id="avatar-egg" 
+          src="/assets/avatar.png" 
+          alt="HormigaDev" 
+          class="w-9 h-9 rounded-full ring-2 ring-discord-blurple/40 group-hover:ring-discord-blurple transition-all cursor-pointer" 
+        />
+        <span 
+          id="logo-egg"
+          class="text-xl font-bold text-discord-blurple font-mono tracking-tight group-hover:text-discord-blurple/80 transition-colors select-none"
+        >
+          HormigaDev
+        </span>
+      </a>
+      <nav class="flex items-center gap-6">
+        <a href="#engineering" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors">
+          {t("nav.projects")}
+        </a>
+        <a href="#stack" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors">
+          {t("nav.stack")}
+        </a>
+        <a href={`/${lang}/docs/`} class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors">
+          {t("nav.docs")}
+        </a>
+        <LanguagePicker client:load currentLang={lang} />
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section class="py-16 md:py-24">
+      <div class="max-w-5xl mx-auto px-6">
+        <p class="text-sm font-mono text-tech-secondary mb-4 tracking-widest uppercase">
+          {t("hero.role")}
+        </p>
+        <HeroTerminal client:visible statusText={t("hero.status")} easterEggs={terminalEasterEggs} />
+      </div>
+    </section>
+
+    <section id="engineering" class="py-16 border-t border-tech-secondary/10">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 
+          id="engineering-title"
+          class="text-2xl font-bold font-mono text-discord-blurple mb-10 flex items-center gap-3 select-none cursor-pointer"
+        >
+          <span class="text-tech-secondary/40">//</span>
+          {t("section.engineering")}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          {projects.map((project, idx) => (
+            <article
+              data-project-egg={idx}
+              class="project-card group rounded-lg border border-tech-secondary/10 bg-tech-darker p-6 hover:border-tech-secondary/30 transition-all duration-300 flex flex-col"
+            >
+              {/* Visual placeholder */}
+              <div
+                class="h-2 w-16 rounded-full mb-5 opacity-60 group-hover:opacity-100 transition-opacity"
+                style={`background-color: ${project.accent}`}
+              />
+              <a 
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-lg font-mono font-semibold text-gray-100 mb-2 flex items-center gap-2 hover:text-discord-blurple transition-colors w-fit"
+              >
+                {project.title}
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+              </a>
+              <p class="text-sm text-tech-secondary leading-relaxed mb-5 flex-1">
+                {project.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <TechBadge name={tag.name} color={tag.color} />
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="py-16 border-t border-tech-secondary/10">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 
+          id="stack-title"
+          class="text-2xl font-bold font-mono text-discord-blurple mb-10 flex items-center gap-3 select-none cursor-pointer"
+        >
+          <span class="text-tech-secondary/40">//</span>
+          {t("section.stack")}
+        </h2>
+        <div class="flex justify-center gap-3">
+          {skills.map((skill) => (
+            <TechBadge name={skill.name} color={skill.color} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline define:vars={{ 
+    eggTranslations: {
+      avatar: t("egg.avatar"),
+      logo: t("egg.logo"),
+      project0: t("egg.project.0"),
+      project1: t("egg.project.1"),
+      project2: t("egg.project.2"),
+      engineering: t("egg.engineering"),
+      stack: t("egg.stack"),
+      found: t("egg.found"),
+      congrats: t("egg.congrats"),
+      complete: t("egg.complete"),
+      explorer: t("egg.explorer"),
+    }
+  }}>
+    let eggCount = 0;
+    const totalEggs = 7;
+    const foundEggs = new Set();
+
+    function showEasterEgg(id, message) {
+      if (foundEggs.has(id)) return;
+      foundEggs.add(id);
+      eggCount++;
+
+      const toast = document.createElement('div');
+      toast.className = 'fixed top-20 right-6 bg-discord-blurple text-white px-6 py-3 rounded-lg shadow-2xl font-mono text-sm z-[100] animate-bounce';
+      toast.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🎉</span>
+          <div>
+            <div class="font-bold">${eggTranslations.found} (${eggCount}/${totalEggs})</div>
+            <div class="text-xs opacity-90">${message}</div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.3s';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+
+      if (eggCount === totalEggs) {
+        setTimeout(() => {
+          const finalToast = document.createElement('div');
+          finalToast.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-vue-green text-white px-8 py-6 rounded-xl shadow-2xl font-mono text-center z-[101]';
+          finalToast.innerHTML = `
+            <div class="text-4xl mb-3">🏆</div>
+            <div class="text-xl font-bold mb-2">${eggTranslations.congrats}</div>
+            <div class="text-sm opacity-90">${eggTranslations.complete}</div>
+            <div class="text-xs mt-2 opacity-75">${eggTranslations.explorer}</div>
+          `;
+          document.body.appendChild(finalToast);
+
+          setTimeout(() => {
+            finalToast.style.transition = 'opacity 0.5s';
+            finalToast.style.opacity = '0';
+            setTimeout(() => finalToast.remove(), 500);
+          }, 4000);
+        }, 500);
+      }
+    }
+
+    const avatar = document.getElementById('avatar-egg');
+    let avatarClicks = 0;
+    let avatarTimer;
+    
+    avatar?.addEventListener('click', (e) => {
+      e.preventDefault();
+      avatarClicks++;
+      clearTimeout(avatarTimer);
+      
+      if (avatarClicks === 3) {
+        avatar.style.transform = 'rotate(360deg) scale(1.2)';
+        setTimeout(() => {
+          avatar.style.transform = '';
+        }, 600);
+        showEasterEgg('avatar', eggTranslations.avatar);
+        avatarClicks = 0;
+      } else {
+        avatarTimer = setTimeout(() => {
+          avatarClicks = 0;
+        }, 500);
+      }
+    });
+
+    const logo = document.getElementById('logo-egg');
+    let logoClicks = 0;
+    let logoTimer;
+
+    logo?.addEventListener('click', (e) => {
+      e.preventDefault();
+      logoClicks++;
+      clearTimeout(logoTimer);
+
+      if (logoClicks === 5) {
+        logo.textContent = '🐜 HormigaDev 🐜';
+        setTimeout(() => {
+          logo.textContent = 'HormigaDev';
+        }, 2000);
+        showEasterEgg('logo', eggTranslations.logo);
+        logoClicks = 0;
+      } else {
+        logoTimer = setTimeout(() => {
+          logoClicks = 0;
+        }, 800);
+      }
+    });
+
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectMessages = [
+      eggTranslations.project0,
+      eggTranslations.project1,
+      eggTranslations.project2
+    ];
+    
+    projectCards.forEach((card) => {
+      card.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        const idx = card.getAttribute('data-project-egg');
+        const eggId = `project-${idx}`;
+        
+        if (!foundEggs.has(eggId)) {
+          card.style.transform = 'scale(1.05)';
+          card.style.boxShadow = '0 0 30px rgba(114, 137, 218, 0.5)';
+          setTimeout(() => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+          }, 400);
+        }
+        
+        showEasterEgg(eggId, projectMessages[idx] || '¡Proyecto épico!');
+      });
+    });
+
+    const engTitle = document.getElementById('engineering-title');
+    engTitle?.addEventListener('click', () => {
+      if (!foundEggs.has('eng-title')) {
+        engTitle.style.color = '#42b883';
+        setTimeout(() => {
+          engTitle.style.color = '';
+        }, 1000);
+      }
+      showEasterEgg('eng-title', eggTranslations.engineering);
+    });
+
+    const stackTitle = document.getElementById('stack-title');
+    stackTitle?.addEventListener('click', () => {
+      if (!foundEggs.has('stack-title')) {
+        stackTitle.style.transform = 'translateX(10px)';
+        setTimeout(() => {
+          stackTitle.style.transform = 'translateX(-10px)';
+          setTimeout(() => {
+            stackTitle.style.transform = '';
+          }, 100);
+        }, 100);
+      }
+      showEasterEgg('stack-title', eggTranslations.stack);
+    });
+  </script>
+</Layout>
