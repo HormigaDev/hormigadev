@@ -19,11 +19,11 @@
       v-if="open"
       class="absolute right-0 mt-1 w-36 rounded border border-tech-secondary/20 bg-tech-darker shadow-lg z-50 overflow-hidden"
     >
-      <a
+      <button
         v-for="(label, code) in languages"
         :key="code"
-        :href="`/${code}/`"
-        class="block px-4 py-2 text-sm font-mono transition-colors"
+        @click="changeLanguage(code)"
+        class="block w-full text-left px-4 py-2 text-sm font-mono transition-colors"
         :class="
           code === currentLang
             ? 'text-discord-blurple bg-tech-dark'
@@ -31,17 +31,13 @@
         "
       >
         {{ label }}
-      </a>
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-defineProps<{
-  currentLang: string;
-}>();
+import { ref, onMounted } from "vue";
 
 const languages: Record<string, string> = {
   es: "🇪🇸 Español",
@@ -49,5 +45,28 @@ const languages: Record<string, string> = {
   pt: "🇧🇷 Português",
 };
 
+const currentLang = ref("es");
 const open = ref(false);
+
+onMounted(() => {
+  // Obtener idioma desde localStorage o navegador
+  const storedLang = localStorage.getItem("preferredLang");
+  const browserLang = navigator.language.split("-")[0];
+
+  currentLang.value = storedLang || (languages[browserLang] ? browserLang : "es");
+
+  // Asegurar que se guarde en localStorage
+  if (!storedLang) {
+    localStorage.setItem("preferredLang", currentLang.value);
+  }
+});
+
+function changeLanguage(lang: string) {
+  currentLang.value = lang;
+  localStorage.setItem("preferredLang", lang);
+  open.value = false;
+
+  // Disparar evento personalizado para que la página actualice las traducciones
+  window.dispatchEvent(new CustomEvent("languagechange", { detail: { lang } }));
+}
 </script>

@@ -1,25 +1,14 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { useTranslations } from "../../i18n/utils";
-import LanguagePicker from "../../components/LanguagePicker.vue";
-import "../../styles/global.css";
-
-export function getStaticPaths() {
-  return [
-    { params: { lang: "es" } },
-    { params: { lang: "en" } },
-    { params: { lang: "pt" } },
-  ];
-}
-
-const { lang } = Astro.params;
-const t = useTranslations(lang);
+import Layout from "../layouts/Layout.astro";
+import LanguagePicker from "../components/LanguagePicker.vue";
+import { ui } from "../i18n/ui";
+import "../styles/global.css";
 ---
 
-<Layout title={`${t("section.docs")} — HormigaDev`} lang={lang}>
+<Layout title="Docs — HormigaDev">
   <header class="sticky top-0 z-50 border-b border-tech-secondary/10 bg-tech-dark/90 backdrop-blur-sm">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href={`/${lang}/`} class="flex items-center gap-3 group">
+      <a href="/" class="flex items-center gap-3 group">
         <img 
           src="/assets/avatar.png" 
           alt="HormigaDev" 
@@ -32,16 +21,16 @@ const t = useTranslations(lang);
         </span>
       </a>
       <nav class="flex items-center gap-6">
-        <a href={`/${lang}/#engineering`} class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors">
-          {t("nav.projects")}
+        <a href="/#engineering" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.projects">
+          
         </a>
-        <a href={`/${lang}/#stack`} class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors">
-          {t("nav.stack")}
+        <a href="/#stack" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.stack">
+          
         </a>
-        <a href={`/${lang}/docs/`} class="text-sm font-mono text-discord-blurple border-b-2 border-discord-blurple">
-          {t("nav.docs")}
+        <a href="/docs/" class="text-sm font-mono text-discord-blurple border-b-2 border-discord-blurple" data-i18n="nav.docs">
+          
         </a>
-        <LanguagePicker client:load currentLang={lang} />
+        <LanguagePicker client:load />
       </nav>
     </div>
   </header>
@@ -51,23 +40,23 @@ const t = useTranslations(lang);
       <div class="max-w-5xl mx-auto px-6">
         <div class="mb-8">
           <a 
-            href={`/${lang}/`}
+            href="/"
             class="inline-flex items-center gap-2 text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors mb-6"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            {t("docs.back")}
+            <span data-i18n="docs.back"></span>
           </a>
         </div>
 
         <div class="mb-12">
           <h1 class="text-4xl md:text-5xl font-bold font-mono text-gray-100 mb-4 flex items-center gap-4">
             <span class="text-discord-blurple/40">//</span>
-            {t("docs.title")}
+            <span data-i18n="docs.title"></span>
           </h1>
-          <p class="text-lg text-tech-secondary font-mono">
-            {t("docs.subtitle")}
+          <p class="text-lg text-tech-secondary font-mono" data-i18n="docs.subtitle">
+            
           </p>
         </div>
 
@@ -78,8 +67,8 @@ const t = useTranslations(lang);
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h2 class="text-2xl font-mono font-bold text-gray-100 mb-3">
-              {t("docs.empty")}
+            <h2 class="text-2xl font-mono font-bold text-gray-100 mb-3" data-i18n="docs.empty">
+              
             </h2>
             <p class="text-tech-secondary font-mono text-sm max-w-md mx-auto">
               📚 Miga CLI • 🔧 Patto Ecosystem • 🍷 Vin Rouge
@@ -103,10 +92,42 @@ const t = useTranslations(lang);
           <div class="border border-tech-secondary/10 rounded-lg bg-tech-darker p-6 hover:border-discord-blurple/30 transition-all">
             <div class="text-3xl mb-3">🍷</div>
             <h3 class="text-lg font-mono font-bold text-gray-100 mb-2">Vin Rouge Bistrô</h3>
-            <p class="text-sm text-tech-secondary font-mono">Vue restaurant platform</p>
+            <p class="text-sm text-tech-secondary font-mono">Digital platform</p>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <script is:inline define:vars={{ translations: ui }}>
+    let currentLang = localStorage.getItem('preferredLang') || navigator.language.split('-')[0] || 'es';
+    
+    if (!['es', 'en', 'pt'].includes(currentLang)) {
+      currentLang = 'es';
+    }
+    
+    localStorage.setItem('preferredLang', currentLang);
+    
+    function translate(key, lang = currentLang) {
+      return translations[lang]?.[key] || translations['es'][key] || key;
+    }
+    
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = translate(key);
+      });
+      
+      document.title = `${translate('section.docs')} — HormigaDev`;
+      document.documentElement.lang = currentLang;
+    }
+    
+    applyTranslations();
+    
+    window.addEventListener('languagechange', (event) => {
+      currentLang = event.detail.lang;
+      localStorage.setItem('preferredLang', currentLang);
+      applyTranslations();
+    });
+  </script>
 </Layout>

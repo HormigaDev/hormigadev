@@ -53,12 +53,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from "vue";
-
-const props = defineProps<{
-  statusText: string;
-  easterEggs: string[];
-}>();
+import { ref, onMounted, nextTick, computed } from "vue";
+import { ui } from "../i18n/ui";
 
 interface TerminalLine {
   type: "command" | "output";
@@ -72,12 +68,37 @@ const interactive = ref(false);
 const currentInput = ref("");
 const terminalInput = ref<HTMLInputElement | null>(null);
 const easterEggIndex = ref(0);
+const currentLang = ref<"es" | "en" | "pt">("es");
 
-const sequence: { command: string; output: string }[] = [
+// Obtener el idioma actual
+onMounted(() => {
+  const lang = localStorage.getItem("preferredLang") || navigator.language.split("-")[0] || "es";
+  currentLang.value = ["es", "en", "pt"].includes(lang) ? (lang as "es" | "en" | "pt") : "es";
+
+  // Escuchar cambios de idioma
+  window.addEventListener("languagechange", (event: any) => {
+    currentLang.value = event.detail.lang;
+    // Reiniciar el terminal con el nuevo idioma
+    resetTerminal();
+  });
+
+  runAnimation();
+});
+
+// Traducciones dinámicas
+const statusText = computed(() => ui[currentLang.value]["hero.status"]);
+const easterEggs = computed(() => [
+  ui[currentLang.value]["terminal.egg.0"],
+  ui[currentLang.value]["terminal.egg.1"],
+  ui[currentLang.value]["terminal.egg.2"],
+  ui[currentLang.value]["terminal.egg.3"],
+]);
+
+const sequence = computed(() => [
   { command: "whoami", output: "HormigaDev" },
-  { command: "current_status", output: props.statusText },
+  { command: "current_status", output: statusText.value },
   { command: "ls ./skills", output: "[Rust, TypeScript, Systemd, Linux]" },
-];
+]);
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -107,7 +128,7 @@ async function showOutput(text: string): Promise<void> {
 async function runAnimation(): Promise<void> {
   await sleep(400);
 
-  for (const entry of sequence) {
+  for (const entry of sequence.value) {
     await typeCommand(entry.command);
     await sleep(180);
     await showOutput(entry.output);
@@ -128,8 +149,8 @@ function executeCommand(): void {
 
   visibleLines.value.push({ type: "command", text: cmd });
 
-  const message = props.easterEggs[easterEggIndex.value];
-  easterEggIndex.value = (easterEggIndex.value + 1) % props.easterEggs.length;
+  const message = easterEggs.value[easterEggIndex.value];
+  easterEggIndex.value = (easterEggIndex.value + 1) % easterEggs.value.length;
 
   visibleLines.value.push({ type: "output", text: message });
 
@@ -152,8 +173,4 @@ function focusInput(): void {
     terminalInput.value.focus();
   }
 }
-
-onMounted(() => {
-  runAnimation();
-});
 </script>

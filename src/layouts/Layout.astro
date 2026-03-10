@@ -1,23 +1,19 @@
 ---
 interface Props {
   title: string;
-  lang: string;
 }
 
-const { title, lang } = Astro.props;
-
-import { useTranslations } from "../i18n/utils";
-const t = useTranslations(lang);
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content="HormigaDev — Full Stack Developer " />
-    <link rel="icon" href="../favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <title>{title}</title>
   </head>
   <body class="bg-tech-dark text-gray-100 min-h-screen flex flex-col antialiased">
@@ -26,7 +22,7 @@ const t = useTranslations(lang);
     <footer class="mt-auto border-t border-tech-secondary/10 py-8">
       <div class="max-w-5xl mx-auto px-6">
         <div class="flex flex-col items-center gap-6">
-          <p class="text-xs font-mono text-tech-secondary/60 text-center">{t("footer.text")}</p>
+          <p class="text-xs font-mono text-tech-secondary/60 text-center" data-i18n="footer.text"></p>
           <div class="flex flex-col items-center gap-3">
             <div class="flex flex-wrap items-center justify-center gap-4">
               <a href="https://discord.com/invite/m7cs2EUc8z" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-mono text-tech-secondary hover:text-discord-blurple transition-colors group">
