@@ -4,48 +4,52 @@
     @click="focusInput"
   >
     <div
-      class="flex items-center justify-between px-4 py-2.5 bg-tech-dark border-b border-tech-secondary/10"
+      class="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-tech-dark border-b border-tech-secondary/10"
     >
-      <div class="flex items-center gap-2">
-        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-        <span class="ml-3 text-xs font-mono text-tech-secondary/60">hormigadev@vps:~</span>
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80"></span>
+        <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80"></span>
+        <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80"></span>
+        <span class="ml-2 sm:ml-3 text-[10px] sm:text-xs font-mono text-tech-secondary/60"
+          >hormigadev@vps:~</span
+        >
       </div>
       <button
         v-if="interactive"
         @click.stop="resetTerminal"
-        class="text-xs font-mono text-tech-secondary/60 hover:text-discord-blurple transition-colors px-2 py-1 rounded hover:bg-tech-darker/50"
+        class="text-[10px] sm:text-xs font-mono text-tech-secondary/60 hover:text-discord-blurple transition-colors px-1.5 sm:px-2 py-0.5 sm:py-1 rounded hover:bg-tech-darker/50"
         title="Limpiar terminal"
       >
         clear
       </button>
     </div>
-    <div class="p-5 font-mono text-sm leading-relaxed min-h-[240px]">
+    <div
+      class="p-3 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed min-h-[180px] sm:min-h-[240px]"
+    >
       <div v-for="(line, i) in visibleLines" :key="i">
-        <div v-if="line.type === 'command'" class="flex gap-2">
+        <div v-if="line.type === 'command'" class="flex gap-1.5 sm:gap-2">
           <span class="text-vue-green select-none">❯</span>
-          <span class="text-discord-blurple">{{ line.text }}</span>
+          <span class="text-discord-blurple break-all">{{ line.text }}</span>
           <span
             v-if="i === visibleLines.length - 1 && isTyping"
-            class="inline-block w-2 h-4 bg-discord-blurple animate-pulse"
+            class="inline-block w-1.5 sm:w-2 h-3.5 sm:h-4 bg-discord-blurple animate-pulse"
           ></span>
         </div>
-        <div v-else class="text-tech-secondary pl-5" v-html="line.text"></div>
+        <div v-else class="text-tech-secondary pl-4 sm:pl-5 break-words" v-html="line.text"></div>
       </div>
-      <div v-if="interactive" class="flex gap-2 mt-1">
+      <div v-if="interactive" class="flex gap-1.5 sm:gap-2 mt-1">
         <span class="text-vue-green select-none">❯</span>
         <input
           ref="terminalInput"
           v-model="currentInput"
           @keydown.enter="executeCommand"
-          class="flex-1 bg-transparent outline-none text-discord-blurple caret-discord-blurple"
+          class="flex-1 bg-transparent outline-none text-discord-blurple caret-discord-blurple text-xs sm:text-sm"
           type="text"
           autocomplete="off"
           spellcheck="false"
         />
       </div>
-      <div v-else-if="done && !interactive" class="flex gap-2 mt-1">
+      <div v-else-if="done && !interactive" class="flex gap-1.5 sm:gap-2 mt-1">
         <span class="text-vue-green select-none">❯</span>
       </div>
     </div>
@@ -70,22 +74,18 @@ const terminalInput = ref<HTMLInputElement | null>(null);
 const easterEggIndex = ref(0);
 const currentLang = ref<"es" | "en" | "pt">("es");
 
-// Obtener el idioma actual
 onMounted(() => {
   const lang = localStorage.getItem("preferredLang") || navigator.language.split("-")[0] || "es";
   currentLang.value = ["es", "en", "pt"].includes(lang) ? (lang as "es" | "en" | "pt") : "es";
 
-  // Escuchar cambios de idioma
   window.addEventListener("languagechange", (event: any) => {
     currentLang.value = event.detail.lang;
-    // Reiniciar el terminal con el nuevo idioma
     resetTerminal();
   });
 
   runAnimation();
 });
 
-// Traducciones dinámicas
 const statusText = computed(() => ui[currentLang.value]["hero.status"]);
 const easterEggs = computed(() => [
   ui[currentLang.value]["terminal.egg.0"],

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import HeroTerminal from "../components/HeroTerminal.vue";
 import LanguagePicker from "../components/LanguagePicker.vue";
+import MobileNav from "../components/MobileNav.vue";
 import TechBadge from "../components/ui/TechBadge.vue";
 import { ui } from "../i18n/ui";
 import "../styles/global.css";
@@ -87,26 +88,27 @@ const skills: { name: string; color: string }[] = [
 
 <Layout title="HormigaDev — Full Stack Developer">
   <header class="sticky top-0 z-50 border-b border-tech-secondary/10 bg-tech-dark/90 backdrop-blur-sm">
-    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 group">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 sm:gap-3 group">
         <img 
           id="avatar-egg" 
           src="/assets/avatar.png" 
           alt="HormigaDev" 
-          class="w-9 h-9 rounded-full ring-2 ring-discord-blurple/40 group-hover:ring-discord-blurple transition-all cursor-pointer" 
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full ring-2 ring-discord-blurple/40 group-hover:ring-discord-blurple transition-all cursor-pointer" 
         />
         <span 
           id="logo-egg"
-          class="text-xl font-bold text-discord-blurple font-mono tracking-tight group-hover:text-discord-blurple/80 transition-colors select-none"
+          class="text-lg sm:text-xl font-bold text-discord-blurple font-mono tracking-tight group-hover:text-discord-blurple/80 transition-colors select-none"
         >
           HormigaDev
         </span>
       </a>
-      <nav class="flex items-center gap-6">
-        <a href="#engineering" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.projects">
+      
+      <nav class="hidden lg:flex items-center gap-6">
+        <a href="/#engineering" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.projects">
           
         </a>
-        <a href="#stack" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.stack">
+        <a href="/#stack" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.stack">
           
         </a>
         <a href="/docs/" class="text-sm font-mono text-tech-secondary hover:text-discord-blurple transition-colors" data-i18n="nav.docs">
@@ -114,52 +116,60 @@ const skills: { name: string; color: string }[] = [
         </a>
         <LanguagePicker client:load />
       </nav>
+      
+      <div class="flex items-center gap-3 lg:hidden">
+        <LanguagePicker client:load />
+        <MobileNav client:load>
+          <div slot="language-picker" class="px-4">
+          </div>
+        </MobileNav>
+      </div>
     </div>
   </header>
 
   <main class="flex-1">
-    <section class="py-16 md:py-24">
-      <div class="max-w-5xl mx-auto px-6">
-        <p class="text-sm font-mono text-tech-secondary mb-4 tracking-widest uppercase" data-i18n="hero.role">
+    <section class="py-12 sm:py-16 md:py-24">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <p class="text-xs sm:text-sm font-mono text-tech-secondary mb-4 tracking-widest uppercase" data-i18n="hero.role">
           
         </p>
         <HeroTerminal client:visible />
       </div>
     </section>
 
-    <section id="engineering" class="py-16 border-t border-tech-secondary/10">
-      <div class="max-w-5xl mx-auto px-6">
+    <section id="engineering" class="py-12 sm:py-16 border-t border-tech-secondary/10">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <h2 
           id="engineering-title"
-          class="text-2xl font-bold font-mono text-discord-blurple mb-10 flex items-center gap-3 select-none cursor-pointer"
+          class="text-xl sm:text-2xl font-bold font-mono text-discord-blurple mb-8 sm:mb-10 flex items-center gap-2 sm:gap-3 select-none cursor-pointer"
         >
           <span class="text-tech-secondary/40">//</span>
           <span data-i18n="section.engineering"></span>
         </h2>
-        <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => (
             <article
               data-project-egg={idx}
-              class="project-card group rounded-lg border border-tech-secondary/10 bg-tech-darker p-6 hover:border-tech-secondary/30 transition-all duration-300 flex flex-col"
+              class="project-card group rounded-lg border border-tech-secondary/10 bg-tech-darker p-4 sm:p-6 hover:border-tech-secondary/30 transition-all duration-300 flex flex-col"
             >
               <div
-                class="h-2 w-16 rounded-full mb-5 opacity-60 group-hover:opacity-100 transition-opacity"
+                class="h-2 w-12 sm:w-16 rounded-full mb-4 sm:mb-5 opacity-60 group-hover:opacity-100 transition-opacity"
                 style={`background-color: ${project.accent}`}
               />
               <a 
                 href={project.repo}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-lg font-mono font-semibold text-gray-100 mb-2 flex items-center gap-2 hover:text-discord-blurple transition-colors w-fit"
+                class="text-base sm:text-lg font-mono font-semibold text-gray-100 mb-2 flex items-center gap-2 hover:text-discord-blurple transition-colors w-fit"
                 data-i18n-project-title={idx}
               >
                 {project.title.es}
-                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                   <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                 </svg>
               </a>
-              <p class="text-sm text-tech-secondary leading-relaxed mb-5 flex-1" data-i18n-project-desc={idx}>
+              <p class="text-xs sm:text-sm text-tech-secondary leading-relaxed mb-4 sm:mb-5 flex-1" data-i18n-project-desc={idx}>
                 {project.description.es}
               </p>
               <div class="flex flex-wrap gap-2">
@@ -173,16 +183,16 @@ const skills: { name: string; color: string }[] = [
       </div>
     </section>
 
-    <section id="stack" class="py-16 border-t border-tech-secondary/10">
-      <div class="max-w-5xl mx-auto px-6">
+    <section id="stack" class="py-12 sm:py-16 border-t border-tech-secondary/10">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <h2 
           id="stack-title"
-          class="text-2xl font-bold font-mono text-discord-blurple mb-10 flex items-center gap-3 select-none cursor-pointer"
+          class="text-xl sm:text-2xl font-bold font-mono text-discord-blurple mb-8 sm:mb-10 flex items-center gap-2 sm:gap-3 select-none cursor-pointer"
         >
           <span class="text-tech-secondary/40">//</span>
           <span data-i18n="section.stack"></span>
         </h2>
-        <div class="flex justify-center gap-3">
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
           {skills.map((skill) => (
             <TechBadge name={skill.name} color={skill.color} />
           ))}
@@ -192,31 +202,24 @@ const skills: { name: string; color: string }[] = [
   </main>
 
   <script is:inline define:vars={{ translations: ui, projectsData: projects }}>
-    // Sistema de traducción dinámica
     let currentLang = localStorage.getItem('preferredLang') || navigator.language.split('-')[0] || 'es';
     
-    // Validar que el idioma sea soportado
     if (!['es', 'en', 'pt'].includes(currentLang)) {
       currentLang = 'es';
     }
     
-    // Guardar preferencia
     localStorage.setItem('preferredLang', currentLang);
     
-    // Función para traducir
     function translate(key, lang = currentLang) {
       return translations[lang]?.[key] || translations['es'][key] || key;
     }
     
-    // Aplicar traducciones
     function applyTranslations() {
-      // Traducir elementos con data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         el.textContent = translate(key);
       });
       
-      // Traducir títulos de proyectos
       document.querySelectorAll('[data-i18n-project-title]').forEach(el => {
         const idx = el.getAttribute('data-i18n-project-title');
         const firstChild = el.firstChild;
@@ -225,30 +228,23 @@ const skills: { name: string; color: string }[] = [
         }
       });
       
-      // Traducir descripciones de proyectos
       document.querySelectorAll('[data-i18n-project-desc]').forEach(el => {
         const idx = el.getAttribute('data-i18n-project-desc');
         el.textContent = projectsData[idx].description[currentLang];
       });
       
-      // Actualizar título de la página
-      // Actualizar título de la página
       document.title = `HormigaDev — ${translate('hero.role')}`;
       
-      // Actualizar atributo lang del HTML
       document.documentElement.lang = currentLang;
     }
     
-    // Aplicar traducciones iniciales
     applyTranslations();
     
-    // Escuchar cambios de idioma
     window.addEventListener('languagechange', (event) => {
       currentLang = event.detail.lang;
       localStorage.setItem('preferredLang', currentLang);
       applyTranslations();
       
-      // Actualizar las traducciones de los easter eggs
       eggTranslations = {
         avatar: translate('egg.avatar'),
         logo: translate('egg.logo'),
@@ -264,7 +260,6 @@ const skills: { name: string; color: string }[] = [
       };
     });
     
-    // Easter Eggs
     let eggCount = 0;
     const totalEggs = 7;
     const foundEggs = new Set();
